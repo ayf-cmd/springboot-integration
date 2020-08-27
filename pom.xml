@@ -21,6 +21,8 @@
         <module>dubbo-provider</module>
         <module>dubbo-common</module>
         <module>dubbo-consumer</module>
+        <module>configcenter-server</module>
+        <module>configcenter-client</module>
     </modules>
 
     <properties>
@@ -30,13 +32,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.boot.version>2.1.0.RELEASE</spring.boot.version>
+        <spring.boot.version>2.3.3.RELEASE</spring.boot.version>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.0.RELEASE</version>
+        <version>2.3.3.RELEASE</version>
         <relativePath />
     </parent>
 

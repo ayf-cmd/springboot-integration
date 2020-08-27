@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    config:
+      # 配置中心地址
+      uri: http://127.0.0.1:8081
+      # 全局配置文件名的前面部分
+      # 服务名称
+      name: client
+      #  可以读取多个配置文件
+      # 版本类型
+      profile: dev
+      # 快速失败
+      failFast: true
+  logging:
+    config: classpath:config/logback-dev.xml
