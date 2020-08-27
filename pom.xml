@@ -23,6 +23,7 @@
         <module>dubbo-consumer</module>
         <module>configcenter-server</module>
         <module>configcenter-client</module>
+        <module>swagger-ui</module>
     </modules>
 
     <properties>
