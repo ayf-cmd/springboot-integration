@@ -1,0 +1,34 @@
+package com.rocketmq.config.producer;
+
+import lombok.*;
+
+import java.io.Serializable;
+
+/**
+ * 生产者配置信息
+ */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class RocketMqProducerProperties implements Serializable {
+
+    /**
+     * 发送者的groupName
+     */
+    private String groupName;
+    /**
+     * 允许的最大消息体
+     */
+    private Integer maxMessageSize;
+    /**
+     * 发送超时时长
+     */
+    private Integer sendMsgTimeout;
+    /**
+     * 重试次数
+     */
+    private Integer retryTimesWhenSendFailed;
+
+}
