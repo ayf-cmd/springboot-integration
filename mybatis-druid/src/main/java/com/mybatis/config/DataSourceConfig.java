@@ -22,7 +22,7 @@ import java.util.StringTokenizer;
 
 @Slf4j
 @Configuration
-@MapperScan(basePackages = { DataSourceConfig.BASE_PACKAGE, DataSourceConfig.BASE_PACKAGE_CUSTOMIZE }, sqlSessionFactoryRef = DataSourceConfig.SQL_SESSION_FACTORY)
+@MapperScan(basePackages = { DataSourceConfig.BASE_PACKAGE }, sqlSessionFactoryRef = DataSourceConfig.SQL_SESSION_FACTORY)
 public class DataSourceConfig {
 	@Autowired
 	private DruidDataSourceConfig druidDataSourceConfig;
@@ -34,8 +34,7 @@ public class DataSourceConfig {
 	/**
 	 * mapper注解扫描包路径
 	 */
-	final static String BASE_PACKAGE = "com.fintell.dp3.db";
-	final static String BASE_PACKAGE_CUSTOMIZE = "com.fintell.dp3.db.customize.mapper";
+	final static String BASE_PACKAGE = "com.mybatis.mapper";
 	/**
 	 * 初始化表情符号
 	 **/
@@ -75,12 +74,10 @@ public class DataSourceConfig {
 		dataSource.setConnectionProperties(druidDataSourceConfig.getConnectionProperties());
 		dataSource.setUseGlobalDataSourceStat(druidDataSourceConfig.isUseGlobalDataSourceStat());
 		dataSource.setUseLocalSessionState(false);
-
 		return dataSource;
 	}
 
 	@Bean
-//	@Profile({ "localdev", "remotetest" })
 	public ServletRegistrationBean<StatViewServlet>  druidServlet() {
 		log.info("********************************************************");
 		log.info("加载druid servlet");
@@ -101,7 +98,6 @@ public class DataSourceConfig {
 	}
 
 	@Bean
-	//	@Profile({ "localdev", "remotetest" })
 	public FilterRegistrationBean filterRegistrationBean() {
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
 		filterRegistrationBean.setFilter(new WebStatFilter());

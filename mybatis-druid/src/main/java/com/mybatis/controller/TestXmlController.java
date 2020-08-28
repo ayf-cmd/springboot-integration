@@ -17,16 +17,16 @@ import java.util.List;
 @RequestMapping("/test")
 public class TestXmlController {
     @Autowired
-    private TestXmlService testService;
+    private TestXmlService testXmlService;
 
     @GetMapping(value = "/get")
     public String get() {
-        return testService.getOne(1L).toString();
+        return testXmlService.getOne(1L).toString();
     }
 
     @GetMapping(value = "/list")
     public String list(Integer page, Integer limit) {
-        PageInfo<TestEntity> testEntityPageInfo = testService.list(page, limit);
+        PageInfo<TestEntity> testEntityPageInfo = testXmlService.list(page, limit);
         List<TestEntity> list = testEntityPageInfo.getList();
         for (TestEntity testEntity : list) {
             log.error(testEntity.toString());

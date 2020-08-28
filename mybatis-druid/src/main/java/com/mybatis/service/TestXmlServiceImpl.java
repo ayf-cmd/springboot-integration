@@ -12,17 +12,17 @@ import java.util.List;
 @Component
 public class TestXmlServiceImpl implements TestXmlService {
     @Autowired
-    private TestXmlMapper testMapper;
+    private TestXmlMapper testXmlMapper;
 
     @Override
     public TestEntity getOne(Long id) {
-        return testMapper.getOne(id);
+        return testXmlMapper.getOne(id);
     }
 
     @Override
     public PageInfo<TestEntity> list(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
-        List<TestEntity> list = testMapper.list();
+        List<TestEntity> list = testXmlMapper.list();
         PageInfo<TestEntity> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
