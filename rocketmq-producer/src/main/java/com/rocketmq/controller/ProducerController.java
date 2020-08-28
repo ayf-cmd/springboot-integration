@@ -21,7 +21,7 @@ public class ProducerController {
     public String report(String msg) {
         for (int i = 0; i < 2; i++) {
             String key = UUID.randomUUID().toString();
-            SendContext.sendMsg(rocketMqProperties.getTopic(), rocketMqProperties.getTag(), key, msg + i);
+            SendContext.sendMsg(rocketMqProperties.getProducer().getTopic(), rocketMqProperties.getProducer().getTag(), key, msg + i);
             SendContext.sendMsg(key, msg + i);
         }
         return "success";

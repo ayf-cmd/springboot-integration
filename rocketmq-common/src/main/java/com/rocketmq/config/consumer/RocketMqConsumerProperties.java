@@ -15,6 +15,14 @@ import java.io.Serializable;
 public class RocketMqConsumerProperties implements Serializable {
 
     /**
+     * 主题
+     */
+    private String topic;
+    /**
+     * tag
+     */
+    private String tag;
+    /**
      * 消费者的groupName
      */
     private String groupName;

@@ -22,16 +22,6 @@ public class RocketMqProperties implements Serializable {
     private String namesrvAddr;
 
     /**
-     * 主题
-     */
-    private String topic;
-
-    /**
-     * tag
-     */
-    private String tag;
-
-    /**
      * 消费者
      */
     private RocketMqConsumerProperties consumer;

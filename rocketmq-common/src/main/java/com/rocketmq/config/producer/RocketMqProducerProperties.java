@@ -15,6 +15,14 @@ import java.io.Serializable;
 public class RocketMqProducerProperties implements Serializable {
 
     /**
+     * 主题
+     */
+    private String topic;
+    /**
+     * tag
+     */
+    private String tag;
+    /**
      * 发送者的groupName
      */
     private String groupName;

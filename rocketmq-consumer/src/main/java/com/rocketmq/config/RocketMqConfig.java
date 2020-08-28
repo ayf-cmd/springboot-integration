@@ -25,7 +25,7 @@ public class RocketMqConfig {
      */
     @Bean(destroyMethod = "close")
     RocketmqConsumer getConsumer(RocketMqProperties rocketMqProperties) {
-        return new RocketmqConsumer(rocketMqProperties, rocketMqProperties.getTopic(), rocketMqProperties.getTag());
+        return new RocketmqConsumer(rocketMqProperties, rocketMqProperties.getConsumer().getTopic(), rocketMqProperties.getConsumer().getTag());
     }
 
 }

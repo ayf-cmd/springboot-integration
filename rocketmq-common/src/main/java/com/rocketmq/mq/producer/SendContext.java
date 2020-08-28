@@ -33,10 +33,10 @@ public class SendContext {
         sendMsgExecutor.submit(new Task(topic, tag, key, msg));
     }
     public static void sendMsg(String key, String msg) {
-        sendMsgExecutor.submit(new Task(rocketMqProperties.getTopic(), rocketMqProperties.getTag(), key, msg));
+        sendMsgExecutor.submit(new Task(rocketMqProperties.getProducer().getTopic(), rocketMqProperties.getProducer().getTag(), key, msg));
     }
     public static void sendMsg(String msg) {
-        sendMsgExecutor.submit(new Task(rocketMqProperties.getTopic(), rocketMqProperties.getTag(), UUID.randomUUID().toString().replace("-", ""), msg));
+        sendMsgExecutor.submit(new Task(rocketMqProperties.getProducer().getTopic(), rocketMqProperties.getProducer().getTag(), UUID.randomUUID().toString().replace("-", ""), msg));
     }
 
     private static class Task implements Runnable {

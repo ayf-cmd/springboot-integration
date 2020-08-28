@@ -11,12 +11,12 @@ public class RocketMqTraceConfig {
 	public static String TRACE_TOPIC;
 	public static String TRACE_TAG;
 	
-	@Value("${rocketmq.topic:#{null}}")
+	@Value("${rocketmq.consumer.topic:#{null}}")
 	public void setTraceTopic(String traceTopic) {
 		TRACE_TOPIC = traceTopic;
 	}
 	
-	@Value("${rocketmq.tag:#{null}}")
+	@Value("${rocketmq.consumer.tag:#{null}}")
 	public void setTraceTag(String traceTag) {
 		TRACE_TAG = traceTag;
 	}
