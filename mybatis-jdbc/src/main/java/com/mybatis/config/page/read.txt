@@ -1,0 +1,15 @@
+分页使用 :
+
+1. 使用PageHelper
+       @Override
+       public PageInfo<TestEntity> list(Integer page, Integer limit) {
+           PageHelper.startPage(page, limit);
+           List<TestEntity> list = testAnnotationMapper.list();
+           PageInfo<TestEntity> pageInfo = new PageInfo<>(list);
+           return pageInfo;
+       }
+
+2. 使用注解
+    1. 方法可通过@EnablePaging进行注解分页
+    2. 请求入参为PageParam<T>
+    3. 请求出参为PageVO<T>
