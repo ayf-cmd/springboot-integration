@@ -39,6 +39,9 @@ public class MyBatisTest {
     @Test
     public void testGetXml() {
         TestEntity one = testXmlService.getOne(1L);
+        one = testXmlService.getOne(1L);
+        one = testXmlService.getOne(1L);
+        one = testXmlService.getOne(1L);
         System.err.println(one);
     }
 

@@ -18,7 +18,8 @@ public class ConsumerProcessor {
             String key = event.getKeys(0);
             String topic = event.getTopic(0);
             String tag = event.getTag(0);
-            log.info("receive rocketmq message : topic {} . tag {} . key {} . 不进行处理，丢弃任务。 ", topic, tag, key);
+            String value = event.getMsg(0);
+            log.info("receive rocketmq message : topic {} . tag {} . key {} value {} . 不进行处理，丢弃任务。 ", topic, tag, key, value);
         } catch (Exception e) {
             log.error("error : ", e);
         }

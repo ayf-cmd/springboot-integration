@@ -89,7 +89,32 @@
         </rollingPolicy>
     </appender>
 
+    <appender name="sql" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${app.log.dir}/sql.log</File>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss} [%t] [%X{traceId}]  %5p %c:%L] %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${app.log.dir}/%d{yyyyMMdd}/sql.log.%d{yyyyMMdd}_%i</FileNamePattern>
+            <!-- 日志文件最大尺寸 -->
+            <maxFileSize>200MB</maxFileSize>
+            <!--日志文件保留天数-->
+            <MaxHistory>180</MaxHistory>
+        </rollingPolicy>
+    </appender>
+    <logger name="druid.sql.Statement" level="debug" additivity="false">
+        <appender-ref ref="sql" />
+    </logger>
+    <logger name="druid.sql.ResultSet" level="debug" additivity="false">
+        <appender-ref ref="sql" />
+    </logger>
+
     <root level="info">
+        <appender-ref ref="sql"/>
         <appender-ref ref="detail"/>
         <appender-ref ref="console"/>
         <appender-ref ref="access"/>
