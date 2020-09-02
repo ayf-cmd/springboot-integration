@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -32,6 +33,8 @@ public class DuridDataSourceFactory {
      */
     @Autowired
     private DruidDataSourceConfig druidDataSourceConfig;
+    @Autowired
+    private MybatisProperties mybatisProperties;
     /***
      * 数据源bean的名称
      */
@@ -125,8 +128,15 @@ public class DuridDataSourceFactory {
     public SqlSessionFactory flowSqlSessionFactory(@Qualifier(DATASOURCE) DataSource dataSource) throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 
-        // 配置mapperLocations
+        // 配置mapperLocations (如果这里配置了，则properties里面配置则会失效)
+        // 解决方案 : 其它属性同理
+        // 1. 重新配置 (properties无需添加 mybatis.mapper-locations=classpath:mappers/*.xml )
         sessionFactory.setMapperLocations(resourceResolver.getResources("classpath:mappers/*.xml"));
+        // 2. properties添加 mybatis.mapper-locations=classpath:mappers/*.xml ， 从mybatisproperties获取
+//        if (!ObjectUtils.isEmpty(mybatisProperties.getMapperLocations())) {
+//            sessionFactory.setMapperLocations(mybatisProperties.resolveMapperLocations());
+//        }
+        // 配置 typeAliasesPackage
         sessionFactory.setTypeAliasesPackage("com.mybatis.entity");
 
         // 配置数据源
