@@ -19,6 +19,11 @@
             <artifactId>rocketmq-client</artifactId>
             <version>4.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-tools</artifactId>
+            <version>4.4.0</version>
+        </dependency>
 
     </dependencies>
 
