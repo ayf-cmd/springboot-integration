@@ -25,6 +25,7 @@
         <module>configcenter-client</module>
         <module>swagger-ui</module>
         <module>hystrix</module>
+        <module>kafka-test</module>
     </modules>
 
     <properties>
