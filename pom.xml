@@ -28,6 +28,7 @@
         <module>kafka-common</module>
         <module>kafka-consumer</module>
         <module>kafka-producer</module>
+        <module>mybatis-mapper</module>
     </modules>
 
     <properties>
