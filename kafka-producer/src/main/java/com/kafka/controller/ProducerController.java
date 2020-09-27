@@ -1,7 +1,6 @@
-package com.rocketmq.controller;
+package com.kafka.controller;
 
-import com.rocketmq.config.producer.RocketMqProducerProperties;
-import com.rocketmq.mq.producer.SendContext;
+import com.kafka.producer.SendMessageKafka;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +14,13 @@ import java.util.UUID;
 @RequestMapping(value = "/producer")
 public class ProducerController {
     @Autowired
-    private RocketMqProducerProperties rocketMqProducerProperties;
+    private SendMessageKafka sendMessageKafka;
 
     @GetMapping(path = "/send")
     public String report(String msg) {
         for (int i = 0; i < 2; i++) {
             String key = UUID.randomUUID().toString();
-            SendContext.sendMsg(rocketMqProducerProperties.getTopic(), rocketMqProducerProperties.getTag(), key, msg + i);
-            SendContext.sendMsg(key, msg + i);
+            sendMessageKafka.sendMsg(msg + i, key);
         }
         return "success";
     }

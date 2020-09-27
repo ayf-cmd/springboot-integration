@@ -1,6 +1,6 @@
 package com.rocketmq.mq.producer;
 
-import com.rocketmq.config.RocketMqProperties;
+import com.rocketmq.config.producer.RocketMqProducerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -27,11 +27,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RocketMqProducer implements Serializable{
     private volatile DefaultMQProducer producer;
     private DefaultMQAdminExt defaultMQAdminExt;
-    private RocketMqProperties rocketMqProperties;
+    private RocketMqProducerProperties rocketMqProducerProperties;
     private static AtomicInteger messageCount = new AtomicInteger(0);
 
-    public RocketMqProducer(RocketMqProperties rocketMqProperties) {
-        this.rocketMqProperties = rocketMqProperties;
+    public RocketMqProducer(RocketMqProducerProperties rocketMqProducerProperties) {
+        this.rocketMqProducerProperties = rocketMqProducerProperties;
     }
 
     @PostConstruct
@@ -65,13 +65,13 @@ public class RocketMqProducer implements Serializable{
         long diffTotal = 0L;
         try{
             // 当消费端未消费时，此方法会报错
-            ConsumeStats consumeStats = this.getInstanceAdmin().examineConsumeStats(rocketMqProperties.getProducer().getGroupName());
+            ConsumeStats consumeStats = this.getInstanceAdmin().examineConsumeStats(rocketMqProducerProperties.getGroupName());
             List<MessageQueue> mqList = new LinkedList();
             mqList.addAll(consumeStats.getOffsetTable().keySet());
             Collections.sort(mqList);
             // 遍历所有的队列，计算堆积量
             for (MessageQueue mq : mqList) {
-                if(rocketMqProperties.getProducer().getTopic().equals(mq.getTopic())){
+                if(rocketMqProducerProperties.getTopic().equals(mq.getTopic())){
                     OffsetWrapper offsetWrapper = (OffsetWrapper)consumeStats.getOffsetTable().get(mq);
                     diffTotal += (offsetWrapper.getBrokerOffset() - offsetWrapper.getConsumerOffset());
                 }
@@ -87,7 +87,7 @@ public class RocketMqProducer implements Serializable{
         try {
             defaultMQAdminExt = new DefaultMQAdminExt();
             defaultMQAdminExt.setInstanceName(Long.toString(System.currentTimeMillis()));
-            defaultMQAdminExt.setNamesrvAddr(rocketMqProperties.getNamesrvAddr());
+            defaultMQAdminExt.setNamesrvAddr(rocketMqProducerProperties.getNamesrvAddr());
             defaultMQAdminExt.start();
         }catch (Exception e){
             log.error("监控客户端启动失败...", e);
@@ -95,23 +95,23 @@ public class RocketMqProducer implements Serializable{
     }
 
     private void initialize() {
-        producer = new DefaultMQProducer(rocketMqProperties.getProducer().getGroupName());
-        producer.setNamesrvAddr(rocketMqProperties.getNamesrvAddr());
+        producer = new DefaultMQProducer(rocketMqProducerProperties.getGroupName());
+        producer.setNamesrvAddr(rocketMqProducerProperties.getNamesrvAddr());
         producer.setVipChannelEnabled(false);
-        if (rocketMqProperties.getProducer().getMaxMessageSize() != null) {
-            producer.setMaxMessageSize(rocketMqProperties.getProducer().getMaxMessageSize());
+        if (rocketMqProducerProperties.getMaxMessageSize() != null) {
+            producer.setMaxMessageSize(rocketMqProducerProperties.getMaxMessageSize());
         }
-        if (rocketMqProperties.getProducer().getSendMsgTimeout() != null) {
-            producer.setSendMsgTimeout(rocketMqProperties.getProducer().getSendMsgTimeout());
+        if (rocketMqProducerProperties.getSendMsgTimeout() != null) {
+            producer.setSendMsgTimeout(rocketMqProducerProperties.getSendMsgTimeout());
         }
-        if (rocketMqProperties.getProducer().getRetryTimesWhenSendFailed() != null) {
-            producer.setRetryTimesWhenSendFailed(rocketMqProperties.getProducer().getRetryTimesWhenSendFailed());
+        if (rocketMqProducerProperties.getRetryTimesWhenSendFailed() != null) {
+            producer.setRetryTimesWhenSendFailed(rocketMqProducerProperties.getRetryTimesWhenSendFailed());
         }
         try {
             producer.start();
-            log.info(String.format("rocketmq producer start ! groupName:[%s], namesrvAddr:[%s]", rocketMqProperties.getProducer().getGroupName(), rocketMqProperties.getNamesrvAddr()));
+            log.info(String.format("rocketmq producerzy start ! groupName:[%s], namesrvAddr:[%s]", rocketMqProducerProperties.getGroupName(), rocketMqProducerProperties.getNamesrvAddr()));
         } catch (MQClientException e) {
-            log.error("this.producer is error ", e);
+            log.error("this.producerzy is error ", e);
         }
     }
     

@@ -1,7 +1,7 @@
 package com.rocketmq.mq.producer;
 
-import com.rocketmq.config.RocketMqProperties;
 import com.rocketmq.config.SpringContextHolder;
+import com.rocketmq.config.producer.RocketMqProducerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.Message;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class SendContext {
     private static RocketMqProducer rocketMqProducer = SpringContextHolder.getBean(RocketMqProducer.class);
-    private static RocketMqProperties rocketMqProperties = SpringContextHolder.getBean(RocketMqProperties.class);
+    private static RocketMqProducerProperties rocketMqProducerProperties = SpringContextHolder.getBean(RocketMqProducerProperties.class);
     private static ThreadPoolExecutor sendMsgExecutor = new ThreadPoolExecutor(20, 50, 60000L, TimeUnit.MILLISECONDS,
             new LinkedBlockingQueue<Runnable>(3000));
 
@@ -33,10 +33,10 @@ public class SendContext {
         sendMsgExecutor.submit(new Task(topic, tag, key, msg));
     }
     public static void sendMsg(String key, String msg) {
-        sendMsgExecutor.submit(new Task(rocketMqProperties.getProducer().getTopic(), rocketMqProperties.getProducer().getTag(), key, msg));
+        sendMsgExecutor.submit(new Task(rocketMqProducerProperties.getTopic(), rocketMqProducerProperties.getTag(), key, msg));
     }
     public static void sendMsg(String msg) {
-        sendMsgExecutor.submit(new Task(rocketMqProperties.getProducer().getTopic(), rocketMqProperties.getProducer().getTag(), UUID.randomUUID().toString().replace("-", ""), msg));
+        sendMsgExecutor.submit(new Task(rocketMqProducerProperties.getTopic(), rocketMqProducerProperties.getTag(), UUID.randomUUID().toString().replace("-", ""), msg));
     }
 
     private static class Task implements Runnable {

@@ -32,7 +32,7 @@ public class AsyncSendMessageCallback implements SendCallback {
 
     @Override
     public void onException(Throwable e) {
-        log.error("send fail {} . ", key);
+        log.error("send fail {} . ", e);
     }
 
 }

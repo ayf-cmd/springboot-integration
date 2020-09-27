@@ -15,6 +15,11 @@ import java.io.Serializable;
 public class RocketMqProducerProperties implements Serializable {
 
     /**
+     * ConfigMq 地址
+     */
+    private String namesrvAddr;
+
+    /**
      * 主题
      */
     private String topic;
