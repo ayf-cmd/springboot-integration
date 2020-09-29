@@ -20,7 +20,7 @@ public class SendContext {
     private static RocketMqProducer rocketMqProducer = SpringContextHolder.getBean(RocketMqProducer.class);
     private static RocketMqProducerProperties rocketMqProducerProperties = SpringContextHolder.getBean(RocketMqProducerProperties.class);
     private static ThreadPoolExecutor sendMsgExecutor = new ThreadPoolExecutor(20, 50, 60000L, TimeUnit.MILLISECONDS,
-            new LinkedBlockingQueue<Runnable>(3000));
+            new LinkedBlockingQueue<Runnable>(1), new ThreadPoolExecutor.CallerRunsPolicy());
 
     /**
      * 异步发送消息给dataService

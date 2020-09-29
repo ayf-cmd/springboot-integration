@@ -22,8 +22,8 @@ public class SendMessageKafka {
     @Autowired
     private KafkaMyProperties kafkaProperties;
 
-    static ThreadPoolExecutor sendMsgExecutor = new ThreadPoolExecutor(10, 20, 60,
-            TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(100));
+    static ThreadPoolExecutor sendMsgExecutor = new ThreadPoolExecutor(20, 50, 60,
+            TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(1), new ThreadPoolExecutor.CallerRunsPolicy());
 
     /**
      * 发送消息
