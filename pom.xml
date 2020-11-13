@@ -29,6 +29,8 @@
         <module>kafka-consumer</module>
         <module>kafka-producer</module>
         <module>mybatis-mapper</module>
+        <module>flink</module>
+        <module>mybatis-generator</module>
     </modules>
 
     <properties>
