@@ -18,7 +18,7 @@ public class MyGenerator {
     public static final String BASE_PATH = System.getProperty("user.dir");
     // 基础信息：项目名、作者、版本
     public static final String PROJECT = "mybatis-generator";
-    public static final String PACKAGE = "com.generatorbiz";
+    public static final String PACKAGE = "biz.generatorbiz";
     public static final String AUTHOR = "anyunfeng";
     public static final String VERSION = "V1.0";
     // 数据库连接信息：连接URL、用户名、秘密、数据库名
@@ -26,7 +26,7 @@ public class MyGenerator {
     public static final String NAME = "root";
     public static final String PASS = "admin";
     public static final String DATABASE = "fintell_credit_dev";
-    public static final String TIME = "2019年6月11日";
+    public static final String TIME = "2020年11月14日";
     public static final String AGILE = new Date().getTime() + "";
 
     public static void main(String[] args) {

@@ -1,7 +1,13 @@
 package ${module}.dao;
 
-import java.util.List;
+import ${module}.dto.${entityName}Dto;
+import ${module}.entity.${entityName}Busi;
+import ${module}.vo.${entityName}QueryVo;
+import ${module}.vo.${entityName}Vo;
+import ${module}.entity.${entityName};
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**   
  * @Description:  ${entityComment}——Mapper

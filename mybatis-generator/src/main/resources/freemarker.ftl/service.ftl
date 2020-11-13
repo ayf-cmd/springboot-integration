@@ -1,13 +1,14 @@
 package ${module}.service;
 
-import javax.validation.Valid;
+import ${module}.dto.${entityName}Dto;
+import ${module}.dto.${entityName}LogicDto;
+import ${module}.entity.${entityName};
+import ${module}.vo.${entityName}QueryVo;
+import ${module}.vo.${entityName}Vo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import ${dtoUrl}.${subPackage}.${entityName}Dto;
-import ${dtoUrl}.${subPackage}.${entityName}LogicDto;
-import ${entityUrl}.${subPackage}.${entityName};
-import ${voUrl}.${subPackage}.${entityName}Vo;
-import ${voUrl}.${subPackage}.${entityName}QueryVo;
 import com.github.pagehelper.PageInfo;
+
+import javax.validation.Valid;
 
 /**   
  * @Description:  ${entityComment}——SERVICE
