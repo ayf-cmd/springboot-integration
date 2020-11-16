@@ -22,7 +22,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @ApiModel(value="${entityName}Vo",description="${entityComment}")
-@SuppressWarnings("serial")
 public class ${entityName}Vo implements Serializable {
 	
 <#list cis as ci>

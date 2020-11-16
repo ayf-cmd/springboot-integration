@@ -8,25 +8,26 @@ import com.mybatis.generator.util.MySqlToJavaUtil;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class MyGenerator {
-
-    // 项目路径
     public static final String BASE_PATH = System.getProperty("user.dir");
+
     // 基础信息：项目名、作者、版本
     public static final String PROJECT = "mybatis-generator";
-    public static final String PACKAGE = "biz.generatorbiz";
     public static final String AUTHOR = "anyunfeng";
     public static final String VERSION = "V1.0";
+    public static final String PACKAGE = "biz.generator";
+
     // 数据库连接信息：连接URL、用户名、秘密、数据库名
     public static final String URL = "jdbc:mysql://localhost:3306/fintell_credit_dev?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true";
     public static final String NAME = "root";
     public static final String PASS = "admin";
     public static final String DATABASE = "fintell_credit_dev";
-    public static final String TIME = "2020年11月14日";
+    public static final String TIME = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     public static final String AGILE = new Date().getTime() + "";
 
     public static void main(String[] args) {
@@ -44,7 +45,9 @@ public class MyGenerator {
 	        bi.setEntityComment(entity.getClassComment());
 	        try {
 	            bi = EntityInfoUtil.getInfo(bi);
+	            // 项目根路径
                 String baseDir = BASE_PATH + File.separator + PROJECT +  "/src/main/java/" + PACKAGE.replace(".", "/") + File.separator + entity.getModule();
+                // 生成代码类
                 System.err.println(Generator.createController(baseDir + "/controller/", bi).toString());
 	            System.err.println(Generator.createDao(baseDir + "/dao" + File.separator, bi).toString());
 	            System.err.println(Generator.createService(baseDir + "/service" + File.separator, bi).toString());
@@ -56,9 +59,8 @@ public class MyGenerator {
 	            System.err.println(Generator.createQueryVo(baseDir + "/vo" + File.separator, bi).toString());
 	            System.err.println(Generator.createUpdateVo(baseDir + "/vo" + File.separator, bi).toString());
                 System.err.println(Generator.createVo(baseDir + "/vo" + File.separator, bi).toString());
-
-//                System.err.println(Generator.createApi(baseDir + "/api" + File.separator, bi).toString());
-//                System.err.println(Generator.createApiImpl(baseDir + "/api" + File.separator, bi).toString());
+                System.err.println(Generator.createApi(baseDir + "/api" + File.separator, bi).toString());
+                System.err.println(Generator.createApiImpl(baseDir + "/api" + File.separator, bi).toString());
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }

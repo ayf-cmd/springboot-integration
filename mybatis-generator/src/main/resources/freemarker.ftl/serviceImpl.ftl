@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.Valid;
 
@@ -21,12 +22,11 @@ import javax.validation.Valid;
  * @CreateDate:   ${createTime}
  * @Version:      ${version}
  */
+@Slf4j
 @Service
 public class ${entityName}ServiceImpl extends ServiceImpl<${entityName}Mapper, ${entityName}> implements ${entityName}Service {
     @Autowired
     private ${entityName}Mapper mapper;
-    @SuppressWarnings("unused")
-    private static final Logger log = LoggerFactory.getLogger(${entityName}ServiceImpl.class);
 	
     @Override
     public ${entityName}LogicDto add(@Valid ${entityName}Vo vo) {

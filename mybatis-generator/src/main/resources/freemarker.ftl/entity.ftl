@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
@@ -23,7 +22,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @AllArgsConstructor
 @Builder
 @TableName(value = "${table}")
-@SuppressWarnings("serial")
 public class ${entityName} implements Serializable {
 	
 <#list cis as ci>

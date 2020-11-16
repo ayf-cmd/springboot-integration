@@ -1,10 +1,9 @@
 package ${module}.dao;
 
 import ${module}.dto.${entityName}Dto;
-import ${module}.entity.${entityName}Busi;
+import ${module}.entity.${entityName};
 import ${module}.vo.${entityName}QueryVo;
 import ${module}.vo.${entityName}Vo;
-import ${module}.entity.${entityName};
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;

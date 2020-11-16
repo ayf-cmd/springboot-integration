@@ -19,7 +19,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @ApiModel(value="${entityName}QueryVo",description="${entityComment}列表查询条件")
-@SuppressWarnings("serial")
 public class ${entityName}QueryVo implements Serializable {
 	
 	@ApiModelProperty(value = "id")
