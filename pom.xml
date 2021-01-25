@@ -31,6 +31,7 @@
         <module>mybatis-mapper</module>
         <module>flink</module>
         <module>mybatis-generator</module>
+        <module>es-client</module>
     </modules>
 
     <properties>
